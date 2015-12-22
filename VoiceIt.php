@@ -95,7 +95,7 @@ class VoiceIt{
 			return $reply;
 	}
 
-	public function createEnrollment($mail, $passwd,$pathToEnrollmentWav)
+	public function createEnrollment($mail, $passwd,$pathToEnrollmentWav, $contentLanguage = "")
 		  	{
 				    $data = file_get_contents($pathToEnrollmentWav);
 		  		    $url = 'https://siv.voiceprintportal.com/sivservice/api/enrollments';
@@ -105,6 +105,7 @@ class VoiceIt{
 		  		    $headr[] = 'VsitEmail: '.$mail;
 		  			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 		  			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+						$headr[] = 'ContentLanguage: '.$contentLanguage;
 		  			$headr[] = 'VsitFirstName: '.$firstName;
 		  			$headr[] = 'VsitLastName: '.$lastName;
 		  			$headr[] = 'VsitPhone1: '.$phone1;
@@ -123,7 +124,7 @@ class VoiceIt{
 		  			return $reply;
 	}
 
-	public function createEnrollmentByWavURL($mail, $passwd,$urlToEnrollmentWav)
+	public function createEnrollmentByWavURL($mail, $passwd,$urlToEnrollmentWav,$contentLanguage = "")
 		  	{
 		  		    $url = 'https://siv.voiceprintportal.com/sivservice/api/enrollments/bywavurl';
 		  		    $headr = array();
@@ -132,6 +133,7 @@ class VoiceIt{
 		  		    $headr[] = 'VsitEmail: '.$mail;
 		  			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 		  			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+						$headr[] = 'ContentLanguage: '.$contentLanguage;
 					$headr[] = 'VsitwavURL: '.$urlToEnrollmentWav;
 
 
@@ -155,6 +157,7 @@ class VoiceIt{
 		    $headr[] = 'VsitEmail: '.$mail;
 			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+
 
 		    //cURL starts
 		    $crl = curl_init();
@@ -186,7 +189,7 @@ class VoiceIt{
 			return $reply;
 	}
 
-	public function authentication($mail, $passwd,$pathToAuthenticationWav,$accuracy,$accuracyPasses, $accuracyPassIncrement,$confidence)
+	public function authentication($mail, $passwd,$pathToAuthenticationWav,$accuracy,$accuracyPasses, $accuracyPassIncrement,$confidence,$contentLanguage = "")
 		  	{
 				    $data = file_get_contents($pathToAuthenticationWav);
 		  		    $url = 'https://siv.voiceprintportal.com/sivservice/api/authentications';
@@ -200,6 +203,7 @@ class VoiceIt{
 		  			$headr[] = 'VsitAccuracyPasses: '.$accuracyPasses;
 		  			$headr[] = 'VsitAccuracyPassIncrement: '.$accuracyPassIncrement;
 		  			$headr[] = 'VsitConfidence: '.$confidence;
+						$headr[] = 'ContentLanguage: '.$contentLanguage;
 
 		  		    //cURL starts
 		  		    $crl = curl_init();
@@ -213,7 +217,7 @@ class VoiceIt{
 		  			return $reply;
 	}
 
-	public function authenticationByWavURL($mail, $passwd,$urlToAuthenticationWav,$accuracy,$accuracyPasses, $accuracyPassIncrement,$confidence)
+	public function authenticationByWavURL($mail, $passwd,$urlToAuthenticationWav,$accuracy,$accuracyPasses, $accuracyPassIncrement,$confidence,$contentLanguage = "")
 		  	{
 
 		  		    $url = 'https://siv.voiceprintportal.com/sivservice/api/authentications/bywavurl';
@@ -227,6 +231,7 @@ class VoiceIt{
 			  			$headr[] = 'VsitAccuracyPasses: '.$accuracyPasses;
 			  			$headr[] = 'VsitAccuracyPassIncrement: '.$accuracyPassIncrement;
 			  			$headr[] = 'VsitConfidence: '.$confidence;
+							$headr[] = 'ContentLanguage: '.$contentLanguage;
 						  $headr[] = 'VsitwavURL: '.$urlToAuthenticationWav;
 
 		  		    //cURL starts

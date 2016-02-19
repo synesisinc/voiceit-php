@@ -1,7 +1,7 @@
 <?php
 class VoiceIt{
 	public $developerId;
-
+	public $platformId = "6";
 	function __construct($devId) {
 				  print "Constructor Called\n";
 				  $this->developerId = $devId;
@@ -21,6 +21,7 @@ class VoiceIt{
 		  			$headr[] = 'VsitPhone1: '.$phone1;
 		  			$headr[] = 'VsitPhone2: '.$phone2;
 		  			$headr[] = 'VsitPhone3: '.$phone3;
+						$headr[] = 'PlatformID: '.$this->platformId;
 
 		  		    //cURL starts
 		  		    $crl = curl_init();
@@ -40,7 +41,7 @@ class VoiceIt{
 		    $headr[] = 'VsitEmail: '.$mail;
 			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 			$headr[] = 'VsitDeveloperId: '.$this->developerId;
-
+			$headr[] = 'PlatformID: '.$this->platformId;
 		    //cURL starts
 		    $crl = curl_init();
 		    curl_setopt($crl, CURLOPT_URL, $url);
@@ -64,6 +65,7 @@ class VoiceIt{
 			$headr[] = 'VsitPhone1: '.$phone1;
 			$headr[] = 'VsitPhone2: '.$phone2;
 			$headr[] = 'VsitPhone3: '.$phone3;
+			$headr[] = 'PlatformID: '.$this->platformId;
 
 		    //cURL starts
 		    $crl = curl_init();
@@ -83,6 +85,7 @@ class VoiceIt{
 		    $headr[] = 'VsitEmail: '.$mail;
 			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+			$headr[] = 'PlatformID: '.$this->platformId;
 
 		    //cURL starts
 		    $crl = curl_init();
@@ -111,6 +114,7 @@ class VoiceIt{
 		  			$headr[] = 'VsitPhone1: '.$phone1;
 		  			$headr[] = 'VsitPhone2: '.$phone2;
 		  			$headr[] = 'VsitPhone3: '.$phone3;
+						$headr[] = 'PlatformID: '.$this->platformId;
 
 		  		    //cURL starts
 		  		    $crl = curl_init();
@@ -126,16 +130,16 @@ class VoiceIt{
 
 	public function createEnrollmentByWavURL($mail, $passwd,$urlToEnrollmentWav,$contentLanguage = "")
 		  	{
-		  		    $url = 'https://siv.voiceprintportal.com/sivservice/api/enrollments/bywavurl';
-		  		    $headr = array();
+					$url = 'https://siv.voiceprintportal.com/sivservice/api/enrollments/bywavurl';
+					$headr = array();
 					$headr[] = 'X-Requested-With: JSONHttpRequest';
-		  		    $headr[] = 'Content-Type: audio/wav';
-		  		    $headr[] = 'VsitEmail: '.$mail;
-		  			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
-		  			$headr[] = 'VsitDeveloperId: '.$this->developerId;
-						$headr[] = 'ContentLanguage: '.$contentLanguage;
+					$headr[] = 'Content-Type: audio/wav';
+					$headr[] = 'VsitEmail: '.$mail;
+					$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
+					$headr[] = 'VsitDeveloperId: '.$this->developerId;
+					$headr[] = 'ContentLanguage: '.$contentLanguage;
 					$headr[] = 'VsitwavURL: '.$urlToEnrollmentWav;
-
+					$headr[] = 'PlatformID: '.$this->platformId;
 
 		  		    //cURL starts
 		  		    $crl = curl_init();
@@ -157,6 +161,7 @@ class VoiceIt{
 		    $headr[] = 'VsitEmail: '.$mail;
 			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+			$headr[] = 'PlatformID: '.$this->platformId;
 
 
 		    //cURL starts
@@ -178,6 +183,7 @@ class VoiceIt{
 		    $headr[] = 'VsitEmail: '.$mail;
 			$headr[] = 'VsitPassword: '.hash('sha256', $passwd);
 			$headr[] = 'VsitDeveloperId: '.$this->developerId;
+			$headr[] = 'PlatformID: '.$this->platformId;
 
 		    //cURL starts
 		    $crl = curl_init();
@@ -204,6 +210,7 @@ class VoiceIt{
 		  			$headr[] = 'VsitAccuracyPassIncrement: '.$accuracyPassIncrement;
 		  			$headr[] = 'VsitConfidence: '.$confidence;
 						$headr[] = 'ContentLanguage: '.$contentLanguage;
+						$headr[] = 'PlatformID: '.$this->platformId;
 
 		  		    //cURL starts
 		  		    $crl = curl_init();
@@ -233,6 +240,7 @@ class VoiceIt{
 			  			$headr[] = 'VsitConfidence: '.$confidence;
 							$headr[] = 'ContentLanguage: '.$contentLanguage;
 						  $headr[] = 'VsitwavURL: '.$urlToAuthenticationWav;
+							$headr[] = 'PlatformID: '.$this->platformId;
 
 		  		    //cURL starts
 							$crl = curl_init();

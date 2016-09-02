@@ -1,0 +1,22 @@
+{
+  "name"        : "synesisinc/voiceit-php",
+  "type"        : "library",
+  "description" : "A Wrapper for using the VoiceIt Rest API.",
+  "keywords"    : [ "voiceit", "php", "voice", "biometrics", "ivr", "rest", "api" ],
+  "homepage"    : "https://github.com/synesisinc/voiceit-php",
+  "license"     : "GPL-3.0",
+  "authors"     : [
+    {
+      "name"  : "Ryan King",
+      "email" : "ryan.king@gosynesis.com"
+    }
+  ],
+  "require"     : {
+    "php" : ">=5.4.0"
+  },
+  "autoload"    : {
+    "psr-4" : {
+      "VoiceIt\\" : "src"
+    }
+  }
+}

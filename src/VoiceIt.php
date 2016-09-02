@@ -1,15 +1,25 @@
 <?php
     namespace VoiceIt;
 
+    /**
+     * Class VoiceIt
+     *
+     * @package VoiceIt
+     */
     class VoiceIt {
 
+        /** @var string  */
         public $developerId;
+        /** @var string  */
         public $platformId = "6";
 
+        /**
+         * VoiceIt constructor.
+         *
+         * @param string $devId
+         */
         function __construct ($devId) {
-            print "Constructor Called\n";
             $this->developerId = $devId;
-            print "Variables Initialized\n";
         }
 
         public function authentication ($mail, $passwd, $pathToAuthenticationWav, $confidence, $contentLanguage = "") {

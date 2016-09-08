@@ -22,6 +22,32 @@
             $this->developerId = $devId;
         }
 
+        /**
+         * This REST API call is used to authenticate the specified user profile within the Voiceprint Developer Portal (VPDP) service.
+         *
+         * It authenticates the specified user profile in the VPDP service database and returns success or failure.
+         *
+         * Please note: The Voiceprint Phrase's (VPP's) are Text-Dependent. The Minimum length of a VPP is 1.5 second.
+         * Please note: You cannot use enrollment sound file for authentication. This is because of our anti- spoofing technology.
+         *
+         * To manage the VPPs associated with your DeveloperID, please login to the developer portal and navigate to Voiceprint Phrases section.
+         * We recommend starting with 85% for the confidence parameter during testing.
+         * After becoming familiar with the API, you can tweak the confidence parameter (with a maximum around 91) in order to decrease false positives.
+         *
+         * Please note: You can use DetectedVoiceprintText and DetectedTextConfidence to help decide which authentication to keep or throw out
+         * and have the user record again based on speech text detected and its confidence.
+         *
+         * HTTP Method: POST
+         * URL: https://siv.voiceprintportal.com/sivservice/api/authentications
+         *
+         * @param string $mail                    The user's valid email address. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $password                The user's password. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $pathToAuthenticationWav File path to PCM Wave Data, 44.1 kHz, 22.05 kHz 16-bit, Stereo. This is a required parameter and cannot be null.
+         * @param int    $confidence              This is used to set an acceptable confidence level needed for successful authentication. The values are 85-100. 85 being most lax and 100 being most strict. This is a required parameter and cannot be null.
+         * @param string $contentLanguage         The content language for the phrase. This is an optional parameter and defaults to the default Language for the DeveloperId that can be set in the billing section of the developer portal.
+         *
+         * @return mixed
+         */
         public function authentication ($mail, $password, $pathToAuthenticationWav, $confidence, $contentLanguage = "") {
             $data     = file_get_contents($pathToAuthenticationWav);
             $url      = 'https://siv.voiceprintportal.com/sivservice/api/authentications';
@@ -92,7 +118,7 @@
          * URL: https://siv.voiceprintportal.com/sivservice/api/enrollments
          *
          * @param string $mail                The user's valid email address. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
-         * @param string $password            The user's password in the form CryptoJS.SHA256(password). Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $password            The user's password. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
          * @param string $pathToEnrollmentWav File path to PCM Wave Data, 44.1 kHz, 22.05 kHz 16-bit, Stereo. This is a required parameter and cannot be null.
          * @param string $contentLanguage     The content language for the phrase. This is an optional parameter and defaults to the default Language for the DeveloperId that can be set in the billing section of the developer portal.
          *
@@ -159,7 +185,7 @@
          * URL: https://siv.voiceprintportal.com/sivservice/api/users
          *
          * @param string $mail      The user's valid email address. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
-         * @param string $password  The user's password in the form CryptoJS.SHA256(password). Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $password  The user's password. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
          * @param string $firstName The user's first name. This is a required parameter and cannot be null.
          * @param string $lastName  The user's last name. This is a required parameter and cannot be null.
          * @param string $phone1    The user's phone1.
@@ -223,7 +249,7 @@
          * URL: https://siv.voiceprintportal.com/sivservice/api/users
          *
          * @param string $mail     The user's valid email address. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
-         * @param string $password The user's password in the form CryptoJS.SHA256(password). Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $password The user's password. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
          *
          * @return mixed
          */
@@ -277,7 +303,7 @@
          * URL: https://siv.voiceprintportal.com/sivservice/api/users
          *
          * @param string $mail     The user's valid email address. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
-         * @param string $password The user's password in the form CryptoJS.SHA256(password). Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
+         * @param string $password The user's password. Provided as part of the REST API Access Credentials. This is a required parameter and cannot be null.
          *
          * @return mixed
          */
